@@ -5,16 +5,16 @@ class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
         result = {}
 
-        for item in strs:
+        for string in strs:
             counts = [0] * 26
-            for character in item:
-                index = ord(character) - ord("a")
-                counts[index] += 1
 
-            counts_as_string = str(counts)
+            for character in string:
+                counts[ord(character) - ord("a")] += 1
 
-            if counts_as_string not in result:
-                result[counts_as_string] = []
-            result[counts_as_string].append(item)
+            counts_as_tuple = tuple(counts)
+
+            if counts_as_tuple not in result:
+                result[counts_as_tuple] = []
+            result[counts_as_tuple].append(string)
 
         return result.values()
